@@ -37,26 +37,7 @@ def solution(s):
             before = curr
         my_zip = my_zip + before
         return len(my_zip)
-    
-    def can_cutted(x: int) -> str:
-        # x가 2라면 s[:2] == s[2:4] == s[4:6] 이런식으로 비교
-        first = s[0:i]
-        matched_count = 1
-        for i in range(x, len(s), x):
-            if s[i:i+x] == first:
-                matched_count += 1
-                continue
-            if matched_count > 1:
-                dap += str(matched_count)
-            dap += temp
-            temp = s[i:i+1]
-            matched_count = 1
-        return dap
-            
-        s[:x] == s[x:x+x]
-        s[:2] == s[2:4]
-        s[4:6] == s[6:8]
-        
+   
     return_length = len(s)
     temp = 0
     for i in range(1, len(s)//2 + 1):
