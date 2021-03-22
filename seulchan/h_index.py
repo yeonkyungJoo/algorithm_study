@@ -11,3 +11,9 @@ def solution(citations):
         if c >= larger_than:
             return larger_than 
     return 0
+
+# 감명깊은 다른사람 풀이
+def solution(citations):
+    citations.sort(reverse=True)
+    answer = max(map(min, enumerate(citations, start=1)))
+    return answer
