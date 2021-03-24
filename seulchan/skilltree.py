@@ -18,3 +18,15 @@ def solution(skill, skill_trees):
         if skill[:len(sub)] == sub:
             answer += 1
     return answer
+
+# 축약 버전
+def solution(skill, skill_trees):
+    answer = 0
+    # 방법2: text replace
+    for x in skill_trees:
+        # regex로 skill에 들어가지 않은 텍스트 제거
+        sub = re.sub(f'(?![{skill}])[A-Z]', '', x)
+        # 개수가 x개이면 무조건 스킬의 skill[:x-1]이랑 같아야됨
+        if skill[:len(sub)] == sub:
+            answer += 1
+    return answer
