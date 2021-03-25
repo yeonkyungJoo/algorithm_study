@@ -1,4 +1,4 @@
-function basicformat(n) {
+function basicFormat(n) {
     let result = [];
     for (let i = 0; i < n; i++) {
         result.push("A");
@@ -11,15 +11,11 @@ function alphaMove(letter) {
     }
     let index = letter.charCodeAt() - 64; //아스키코드 값으로 바꾼다/ A = 1, Z = 26
     //A -> Z 로 가는게 빠를지 Z -> A로 가는 게 빠를지 어떻게 판단하면 될까?
-    if (index > 13) {
-        return 26 - index + 1
-    } else {
-        return index - 1;
-    }
+    return index > 13 ? 26 - index + 1 : index - 1;
 }
 
 //가장 가까운 a값을 찾는 것..
-function leftright(name, index) {
+function leftRight(name, index) {
     let left = 1;
     let right = 1;
     let rightIndex = index;
@@ -56,23 +52,23 @@ function leftright(name, index) {
 
 function solution(name) {
     //A초기상태를 먼저 가져온다..
-    let basic = basicformat(name.length);
+    let basic = basicFormat(name.length);
     let result = 0; //결과값 넣을 곳
     //복사한 name 값을 만든다
     let cpname = name;
     //가장 가까운 a 값을 찾는다...
     let updown = name.split("").map(element => alphaMove(element))
-    updown = updown.reduce((acc, cur) => (acc + cur), 0);
+    updown = updown.reduce((acc, cur) => acc + cur);
     //while 문을 돌린다. cpname 을 전부 AAAAA로 바꿀떄까지 맞춘다
     cpname = cpname.split("");
     cpname[0] = "A";
-    let nowindex = 0;
+    let nowIndex = 0;
     while (cpname.join("") !== basic.join("")) {
         //방향설정을 먼저한다.
-        let [count, index] = leftright(cpname, nowindex);
+        let [count, index] = leftRight(cpname, nowIndex);
         result += count;
         cpname[index] = 'A';
-        nowindex = index;
+        nowIndex = index;
     }
     return result + updown;
 }
