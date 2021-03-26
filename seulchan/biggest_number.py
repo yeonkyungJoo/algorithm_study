@@ -59,7 +59,8 @@ def solution(numbers):
         
     return answer
 
-# solution 3: test case 11이 걸림.. ㅠㅠ
+# solution 3: test case 11이 걸림..
+# -> test 11: 모두 0일때는 0000.. 이 아니라 0 반환해야됨!
 def solution(numbers):
     '''
     ## solution 3: make all numbers to 4 digits (numbers <= 1000)
@@ -67,11 +68,14 @@ def solution(numbers):
     - and compare with only one loop
     - return original number and make string
     '''
+    # if all is 0, return 0
+    if set(numbers) == {0}:
+        return '0'
     # make all it to string
     numbers = [(str(x), str(x)*3) for x in numbers]
     
     # sort
     numbers.sort(key=lambda x: x[1][:], reverse=True)
     
-    # return original number from tuple
+    # find original number
     return ''.join((x[0] for x in numbers))
