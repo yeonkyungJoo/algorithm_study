@@ -10,7 +10,7 @@ def solution(numbers):
         #print(t1[0])
         #print(t2,t2)
         j = 0
-        #print(len(t2))
+        #print(len(t2))ㄴ
         #print(t2 + t1[0])
         while True:  # 1자리,2자리,3자리는 4자리로 다 가득 채우기
             t2 += t1[j]
