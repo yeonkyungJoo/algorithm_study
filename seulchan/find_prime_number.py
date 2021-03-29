@@ -17,6 +17,8 @@ def solution(numbers):
     ## 2. pre-determine from the first digits
     - a: check if x is prime number
     - ba: use only a
+
+    ## 3. Compare number set & prime number set
     '''
     def is_prime(x):
         if x < 2:
