@@ -35,7 +35,7 @@ def solution(p):
     
     if iscorrect(u): #u가 맞느지 확인해서 ok이면 u추가 해서 v재귀
         answer += u + solution(v)
-    else :           #u가 틀리면 문제에 공식처럼 앞쪽으로 땡겨오고 뒤에 완성형을 만들어주는 신기!!
+    else :           #u가 틀리면 문제에 공식처럼 앞쪽으로 땡겨오고 뒤에 완성형을 만들어주는 신기!!!
         answer += '(' + solution(v) + ')'
         for i in u[1:-1]:
             if i=='(' : answer+=')'
