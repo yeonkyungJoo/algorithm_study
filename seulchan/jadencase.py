@@ -43,6 +43,9 @@ def solution(s):
         ''.join(x[0].upper() + x[1:].lower()) if len(x) > 1 else x.upper() for x in s.split(' ')
     ))
 
+# 다른사람의 풀이: 내장함수 capitalize 사용
+def solution(s):
+    return ' '.join(w.capitalize() for w in s.split(' '))
 
 # time complelxity
 '''
