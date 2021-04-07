@@ -85,5 +85,5 @@ def solution(m, musicinfos):
     if len(r) == 1:
         return r[0][2]
     
-    return sorted(r, key=lambda x: x[0])[0][2]
+    return sorted(r, key=lambda x: x[0], reverse=True)[0][2]
 
