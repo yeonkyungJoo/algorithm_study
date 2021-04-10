@@ -59,3 +59,6 @@ def solution(relation):
                 
     return len(answer)
 
+'''
+결국 못풀고 포기
+'''
