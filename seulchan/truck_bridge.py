@@ -53,3 +53,74 @@ def solution(bridge_length, weight, truck_weights):
 적당히 풀긴 했는데 잘 이해가 안가는 문제
 다 건너는 시점이 +1이 되는 이유를 잘 모르겠음
 '''
+
+# class로 인터페이스를 생성하한 풀이가 인상깊어서 구현해봄
+from collections import deque
+
+DUMMY_TRUCK: int = 0
+
+class Bridge:
+    '''bridge implementation for calculating weight'''
+    def __init__(self, max_length: int, max_weight: int) -> None:
+        self.max_length: int = max_length
+        self.max_weight: int = max_weight
+        self.weight: int = 0
+        self.queue: deque = deque([0]*max_length)
+
+    def push(self, truck: int):
+        '''add truck to bridge'''
+        self.queue.append(truck)
+        self._add_weight(truck)
+
+    def pop(self) -> None:
+        '''pop out truck from bridge'''
+        arrived_truck = self.queue.popleft()
+        self._subtract_weight(arrived_truck)
+
+    def can_add(self, truck: int) -> bool:
+        '''is possible to add more weight to the bridge'''
+        return self.weight + truck <= self.max_weight and len(self) < self.max_length
+
+    def _add_weight(self, weight: int):
+        '''add total weight of bridge'''
+        self.weight += weight
+
+    def _subtract_weight(self, weight: int):
+        self.weight -= weight
+
+    def __bool__(self):
+        return len(self) != 0
+
+    def __iter__(self):
+        yield from self.queue
+
+    def __len__(self):
+        return len(self.queue)
+
+    def __repr__(self):
+        return 'Bridge:[' + ','.join(map(str, self)) + '] ' + f'total weight: {self.weight}'
+
+
+def solution(bridge_length, weight, truck_weights):
+    count = 0
+
+    bridge = Bridge(bridge_length, weight)
+    truck_weights.reverse()
+
+    while truck_weights:
+        bridge.pop()
+
+        next_truck = truck_weights[-1]
+        bridge.can_add(next_truck)
+        if bridge.can_add(next_truck):
+            truck_weights.pop()
+        else:
+            next_truck = DUMMY_TRUCK
+
+        bridge.push(next_truck)
+
+        count += 1
+    while bridge:
+        bridge.pop()
+        count += 1
+    return count
