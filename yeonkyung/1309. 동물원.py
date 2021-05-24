@@ -8,6 +8,6 @@ if __name__ == "__main__":
     for i in range(2, N+1):
         dp[i] = dp[i-1] * 2 + dp[i-2]
 
-    print(dp[N])
+    print(dp[N] % 9901)
 
 
