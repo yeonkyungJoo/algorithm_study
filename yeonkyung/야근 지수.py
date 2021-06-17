@@ -1,25 +1,18 @@
 import heapq
 
 def solution(n, works):
-    for i in range(len(works)):
-        works[i] *= -1
+
+    works = [w * (-1) for w in works]
     heapq.heapify(works)
 
-    for i in range(0, n):
-        m = heapq.heappop(works)
-        if m >= 0:
-            heapq.heappush(works, m)
+    for _ in range(n):
+        work = heapq.heappop(works) * (-1)
+        if work == 0:
             break
-        m += 1
-        heapq.heappush(works, m)
+        heapq.heappush(works, (work - 1) * (-1))
 
-    answer = 0
-    while len(works) > 0:
-        m = heapq.heappop(works)
-        answer += pow(m * -1, 2)
-    return answer
+    return sum([(w * (-1)) ** 2 for w in works])
 
 if __name__ == "__main__":
-    works = [4, 3, 3]
-    n = 4
+    n, works = 1, [2, 1, 2]
     print(solution(n, works))
