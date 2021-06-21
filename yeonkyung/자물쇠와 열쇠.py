@@ -18,21 +18,21 @@ def solution(key, lock):
 
                 bg = [[0 for _ in range(N + (M - 1) * 2)] for _ in range(N + (M - 1) * 2)]
 
+                # lock
+                for k in range(N):
+                    for l in range(N):
+                        bg[M - 1 + k][M - 1 + l] += lock[k][l]
+
                 # key
                 for k in range(M):
                     for l in range(M):
                         bg[i+k][j+l] += key[k][l]
 
-                # lock
-                for k in range(N):
-                    for l in range(N):
-                        bg[N - 1 + k][N - 1 + l] += lock[k][l]
-
                 # check
                 check = True
                 for k in range(N):
                     for l in range(N):
-                       if bg[N - 1 + k][N - 1 + l] != 1:
+                       if bg[M - 1 + k][M - 1 + l] != 1:
                             check = False
 
                 if check:
@@ -42,6 +42,5 @@ def solution(key, lock):
 
 if __name__ == "__main__":
     key = [[0, 0, 0], [1, 0, 0], [0, 1, 1]]
-    lock = [[1, 1, 1], [1, 1, 0], [1, 0, 1]]
+    lock = [[1, 1, 1, 1], [1, 1, 0, 1], [1, 0, 1, 1], [1, 1, 1, 1]]
     print(solution(key, lock))
-
